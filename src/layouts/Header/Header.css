@@ -1,0 +1,86 @@
+.epic-header {
+      width: calc(100vw - 10px);
+  background-color: #2a2a2a;
+  height: 65px;
+  
+}
+
+.epic-navbar {
+  width: 100%;
+}
+
+.epic-navbar > li {
+  display: inline;
+  float: left;
+}
+
+.epic-navbar > li > a {
+  padding: 21px;
+  text-decoration: none;
+  color: #ccc;
+  display: block;
+  font-family: OpenSans, sans-serif, arial;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  top: 50%;
+  border-bottom: 5px solid transparent;
+
+}
+
+.epic-navbar > li > a:visited {
+    text-decoration: none;
+}
+.epic-navbar > li > a:hover {
+  color: #fff !important;
+  border-bottom: 5px solid #007dfc;
+  transition: border-bottom 1s;
+}
+
+.bg-color-blue {
+    background-color: #007dfc;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.flex-item:nth-child(1) {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  margin-left: 20px;
+}
+
+.flex-item:nth-child(2) {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  margin-right: 10px;
+}
+
+.shield-logo {
+  float: left;
+  width: 30px;
+  height: 38px;
+  overflow: hidden;
+  margin: 15px 15px 0px 30px;
+}
+
+.epic-download-button {
+    height: 100%;
+    margin-top: -20px;
+    margin-right: 10px;
+    width: 100%;
+    line-height: 50px;
+}
+
+.active-link {
+  color: #fff !important;
+  border-bottom: 5px solid #007dfc;
+}

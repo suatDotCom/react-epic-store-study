@@ -1,0 +1,83 @@
+.discount-games-container {
+  margin-top: 100px;
+}
+
+.discount-games-container .card {
+  width: 185px;
+  height: 245px;
+  position: relative;
+  padding-bottom: calc(4 / 3 * 100%);
+  background: linear-gradient(to bottom, rgb(43, 43, 43), rgb(32, 32, 32));
+  color: rgba(245, 245, 245, 0.6);
+  overflow: hidden;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.discount-games-container .card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.discount-games-container .card img {
+  transition: opacity 125ms ease-in-out 450ms;
+  position: absolute;
+  image-rendering: -webkit-optimize-contrast;
+  height: 100%;
+  width: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.discount-games-swiper.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.discount-games-swiper .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  width: 190px;
+  height: 250px;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.discount-games-swiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.likes {
+  margin-top: -10px;
+  margin-right: 15px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: flex-start;
+}

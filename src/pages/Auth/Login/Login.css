@@ -1,0 +1,52 @@
+
+.login-container {
+  color: #fff;
+  width: 100%;
+  padding-top: 50px;
+  min-height: 700px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  z-index: auto;
+  background-color: #121212;
+}
+.login-container a {
+  color: #fff;
+}
+
+.login-form {
+  padding: 20px;
+  margin: auto;
+  /* position: absolute; */
+  width: 50%;
+  background-color: #202020;
+}
+
+.shield-logo-container {
+  display: flex;
+  justify-content: center;
+}
+.shield-logo {
+  width: 30px;
+  height: 38px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.account-message {
+  text-align: center;
+  color: #fff;
+  font-size: 1.125rem;
+    font-family: Brutal, sans-serif;
+    font-weight: 500;
+    line-height: 1.5625rem;
+    letter-spacing: 0.5px;
+}
+
+.form-container {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}

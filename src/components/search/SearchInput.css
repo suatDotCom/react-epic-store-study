@@ -1,0 +1,32 @@
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search > .search-input {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: rgb(32, 32, 32);
+    border-radius: 24px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 8px 0;
+    outline: none;
+    border:none;
+    color: #fff;
+    padding: 10px 10px 10px 40px;
+}
+
+.search-icon-for-input {
+    margin-right: -35px;
+    z-index: 999;
+    color: #fff;
+}
+
+.search-list {
+    height: 200px;
+}

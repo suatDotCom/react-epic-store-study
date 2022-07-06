@@ -1,0 +1,50 @@
+{
+  "navigation": {
+    "texts": {},
+    "buttons": {
+      "store": "Mağaza",
+      "faq": "SSS",
+      "help": "Yardım",
+      "login": "Giriş Yap",
+      "download": "Epic Games'i İndir",
+      "discover": "Keşfet",
+      "browse": "Göz At",
+      "news": "Haberler",
+      "logout": "Çıkış Yap",
+      "myLibrary": "Kütüphanem",
+      "purchased": "Satın Alınanlar",
+      "favoriteGames": "Favori Oyunlarım"
+    }
+  },
+  "search": {
+    "texts": {
+      "search": "Ara",
+      "noResult": "Sonuç bulunamadı"
+    }
+  },
+  "login": {
+    "texts": {
+      "epicAccountLoginMessage": "Bir Epic Games Hesabı ile giriş yapın.",
+      "email": "Eposta Adresi",
+      "password": "Şifre",
+      "confirmPassword": "Tekrar Şifre",
+      "rememberMe": "Beni hatırla",
+      "dontHaveEpicGameAccount": "Bir Epic Games Hesabın yok mu?"
+    },
+    "buttons": {
+      "login": "HEMEN GİRİŞ YAP",
+      "register": "Kayıt Ol",
+      "forgotPassword": "Şifremi unuttum",
+      "privacyPolicy": "Gizlilik Politikası",
+      "backToStore": "Mağazaya Dön"
+    }
+  },
+  "home": {
+    "texts": {
+      "discountedGames": "İndirimli Oyunlar",
+      "all": "Tüm Oyunlar",
+      "categories": "Kategoriler"
+    },
+    "buttons": {}
+  }
+}

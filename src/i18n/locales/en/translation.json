@@ -1,0 +1,52 @@
+{
+  "navigation": {
+    "texts": {},
+    "buttons": {
+      "store": "Store",
+      "faq": "FAQ",
+      "help": "Help",
+      "login": "Login",
+      "download": "Download Epic Games",
+      "discover": "Discover",
+      "browse": "Browse",
+      "news": "News",
+      "logout": "Logout",
+      "myLibrary": "My Library",
+      "purchased": "Purchased Games",
+      "favoriteGames": "Favorite Games"
+    }
+  },
+  "search": {
+    "texts": {
+      "search": "Search",
+      "noResult": "No result"
+    }
+  },
+  "login": {
+    "texts": {
+      "epicAccountLoginMessage": "Login Epic Games Account.",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Re Password",
+      "rememberMe": "Remember Me",
+      "dontHaveEpicGameAccount": "Don't have an Epic Games Account?"
+
+    },
+    "buttons": {
+      "login": "LOGIN NOW",
+      "register": "Register",
+      "forgotPassword": "Forgot password",
+      "privacyPolicy": "Privacy Policy",
+      "backToStore": "Back to Store"
+    }
+
+  },
+  "home": {
+    "texts": {
+      "discountedGames": "Discounted Games",
+      "all": "All Games",
+      "categories": "Categories"
+    },
+    "buttons": {}
+  }
+}
