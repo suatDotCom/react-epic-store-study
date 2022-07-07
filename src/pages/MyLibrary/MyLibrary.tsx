@@ -3,8 +3,6 @@ import { Context } from "../../store";
 import { FavoriteComponent } from "../../components/favorite";
 import { IGame } from "../../models/epic-games";
 import "./MyLibrary.css";
-import { GET_FAVORITE_GAMES, SET_GAMES } from "../../store/types/game.type";
-import { GameService } from "../../services/game.service";
 import { GameModal } from "../../components/game-modal";
 import useModal from "../../shared/hooks/useModal";
 import { useTranslation } from "react-i18next";
