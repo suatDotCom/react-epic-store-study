@@ -25,9 +25,18 @@ export const MainNavigation = () => {
       <div className="menu-container">
         <ul className="main-navigation">
           {isLoggedIn() && (
-            <li className="navigation-item">
-              <a href="#favorites" onClick={() => navigate('/my-library')}>{t("navigation.buttons.favoriteGames")}</a>
-            </li>
+            <>
+              <li className="navigation-item">
+                <a href="#favorites" onClick={() => navigate("/my-library")}>
+                  {t("navigation.buttons.favoriteGames")}
+                </a>
+              </li>
+              <li className="navigation-item">
+                <a href="#purchased" onClick={() => navigate("/my-library")}>
+                  {t("navigation.buttons.purchased")}
+                </a>
+              </li>
+            </>
           )}
         </ul>
       </div>

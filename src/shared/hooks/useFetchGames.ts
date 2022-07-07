@@ -6,6 +6,7 @@ import {
   GET_FAVORITE_GAMES,
   SET_UNIQUE_CATEGORIES,
   SET_GAMES,
+  GET_PURCHASED_GAMES,
 } from "../../store/types/game.type";
 import { getGames } from "../storage/GameStorage";
 
@@ -34,6 +35,10 @@ const useFetchGames = () => {
 
     dispatch({
       type: GET_FAVORITE_GAMES,
+    });
+
+    dispatch({
+      type: GET_PURCHASED_GAMES,
     });
 
     dispatch({

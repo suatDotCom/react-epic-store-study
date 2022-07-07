@@ -4,6 +4,7 @@ import { IUser } from "../../models/user/IUser";
 import {
   getFavoriteGames,
   setFavoriteGames,
+  setPurchasedGames,
 } from "../../shared/storage/GameStorage";
 import {
   getRegisteredUsers,
@@ -18,10 +19,11 @@ const userReducer = (state: IUsersStore, action: IAction) => {
     case LOGIN:
       setCurrentUser(action.payload);
 
-      var userFavorites = getRegisteredUsers().filter(
+      var user: IUser = getRegisteredUsers().filter(
         (item: IUser) => item.email == action.payload.email
-      )[0]?.favoriteGames;
-      setFavoriteGames(userFavorites);
+      )[0];
+      setFavoriteGames(user.favoriteGames);
+      setPurchasedGames(user.purchasedGames);
 
       return {
         ...state,

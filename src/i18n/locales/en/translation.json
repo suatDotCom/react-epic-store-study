@@ -30,7 +30,6 @@
       "confirmPassword": "Re Password",
       "rememberMe": "Remember Me",
       "dontHaveEpicGameAccount": "Don't have an Epic Games Account?"
-
     },
     "buttons": {
       "login": "LOGIN NOW",
@@ -39,7 +38,6 @@
       "privacyPolicy": "Privacy Policy",
       "backToStore": "Back to Store"
     }
-
   },
   "home": {
     "texts": {
@@ -48,5 +46,14 @@
       "categories": "Categories"
     },
     "buttons": {}
+  },
+  "myLibrary": {
+    "texts": {
+      "purchasedGames": "Purchased Games"
+    },
+    "buttons": {
+      "purchased": "Purchased",
+      "purchase": "Purchase"
+    }
   }
 }

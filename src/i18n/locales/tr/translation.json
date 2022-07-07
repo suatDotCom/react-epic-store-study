@@ -46,5 +46,14 @@
       "categories": "Kategoriler"
     },
     "buttons": {}
+  },
+  "myLibrary": {
+    "texts": {
+      "purchasedGames": "Satın Alınanlar"
+    },
+    "buttons": {
+      "purchased": "Satın Alındı",
+      "purchase": "Satın Al"
+    }
   }
 }

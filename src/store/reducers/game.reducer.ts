@@ -5,8 +5,10 @@ import { IUser } from "../../models/user/IUser";
 import {
   getFavoriteGames,
   getGames,
+  getPurchasedGames,
   setFavoriteGames,
   setGames,
+  setPurchasedGames,
 } from "../../shared/storage/GameStorage";
 import {
   getCurrentUser,
@@ -21,6 +23,8 @@ import {
   SET_FILTERED_GAMES,
   SET_UNIQUE_CATEGORIES,
   SET_SEARCH_TEXT,
+  ADD_PURCHASED_GAMES,
+  GET_PURCHASED_GAMES,
 } from "../types/game.type";
 
 const syncRegisteredUser = () => {
@@ -28,6 +32,7 @@ const syncRegisteredUser = () => {
   var registeredUsersSync = (getRegisteredUsers() || []).map((user: IUser) => {
     if (user.email == currentUser?.email) {
       user.favoriteGames = getFavoriteGames();
+      user.purchasedGames = getPurchasedGames();
     }
 
     return user;
@@ -95,6 +100,24 @@ const gameReducer = (state: IEpicGameStore, action: IAction) => {
       return {
         ...state,
         favoriteGames,
+      };
+      case GET_PURCHASED_GAMES:
+      var purchasedGames: number[] = getPurchasedGames();
+
+      return {
+        ...state,
+        purchasedGames,
+      };
+      case ADD_PURCHASED_GAMES:
+      var purchasedGames: number[] = (state?.purchasedGames || []).concat(
+        action.payload
+      );
+
+      setPurchasedGames(purchasedGames);
+      syncRegisteredUser();
+      return {
+        ...state,
+        purchasedGames,
       };
     case SET_FILTERED_GAMES:
       return {

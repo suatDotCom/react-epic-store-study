@@ -13,3 +13,11 @@ export function getFavoriteGames() {
 export function setFavoriteGames(favorites) {
   localStorage.setItem("favoriteGames", JSON.stringify(favorites));
 }
+
+export function getPurchasedGames() {
+  return JSON.parse(localStorage.getItem("purchasedGames"));
+}
+
+export function setPurchasedGames(purchased) {
+  localStorage.setItem("purchasedGames", JSON.stringify(purchased));
+}
