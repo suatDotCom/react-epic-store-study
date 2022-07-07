@@ -9,20 +9,23 @@ import Box from "@mui/material/Box";
 import "./SearchInput.css";
 import { Context } from "../../store";
 import { IGame } from "../../models/epic-games";
-import { SET_FILTERED_GAMES, SET_SEARCH_TEXT } from "../../store/types/game.type";
+import {
+  SET_FILTERED_GAMES,
+  SET_SEARCH_TEXT,
+} from "../../store/types/game.type";
+import { useNavigate } from "react-router-dom";
 export const SearchInput = () => {
   //@ts-ignore
   const [state, dispatch] = useContext(Context);
   const { t } = useTranslation();
   const [filteredGames, setFilteredGames] = useState<IGame[]>([]);
+  const navigate = useNavigate();
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const [isShowing, setIsShowing] = useState(false);
+
   const handleClose = () => {
-    setAnchorEl(null);
+    setIsShowing(false);
+    navigate("/all-games");
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,15 +41,15 @@ export const SearchInput = () => {
     });
 
     setFilteredGames(filtered);
-    setAnchorEl(e.currentTarget);
+    setIsShowing(true);
 
     dispatch({
       type: SET_FILTERED_GAMES,
-      payload: filtered
-    })
+      payload: filtered,
+    });
     dispatch({
       type: SET_SEARCH_TEXT,
-      payload: searchValue
+      payload: searchValue,
     });
   };
 
@@ -60,11 +63,10 @@ export const SearchInput = () => {
         onChange={(e) => handleSearch(e)}
         onBlur={() => handleClose()}
       ></input>
-      <div className="">
-        <Box sx={boxStyles} className={open ? "" : "d-none"}>
-          <List className="search-list">
+        <Box sx={boxStyles} className={isShowing ? "" : "d-none"}>
+          <List className="search-list" >
             {filteredGames?.length > 0 ? (
-              filteredGames?.map((game: IGame, key:number) => (
+              filteredGames?.map((game: IGame, key: number) => (
                 <ListItem key={key}>
                   <ListItemButton>
                     <ListItemText secondary={game.Name} />
@@ -81,7 +83,6 @@ export const SearchInput = () => {
             )}
           </List>
         </Box>
-      </div>
     </div>
   );
 };
@@ -96,4 +97,5 @@ const boxStyles = {
   left: " -10px",
   zIndex: -1,
   borderRadius: "7px",
+  
 };
