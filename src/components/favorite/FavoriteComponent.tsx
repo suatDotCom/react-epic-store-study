@@ -17,7 +17,7 @@ export const FavoriteComponent = (props: IFavoriteProps) => {
   //@ts-ignore
   const [state, dispatch] = useContext(Context);
   let { game } = props;
-  let favoriteGames = state.epicGame.games.filter((game: IGame) =>
+  let favoriteGames = (state?.epicGame?.games || []).filter((game: IGame) =>
     state?.epicGame?.favoriteGames?.includes(game.Id)
   );
 
