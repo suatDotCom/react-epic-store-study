@@ -17,11 +17,7 @@ import { GameService } from "../../services/game.service";
 import useFetchGames from "../../shared/hooks/useFetchGames";
 import useModal from "../../shared/hooks/useModal";
 import { Context } from "../../store";
-import {
-  SET_UNIQUE_CATEGORIES,
-  SET_FILTERED_GAMES,
-  SET_GAMES,
-} from "../../store/types/game.type";
+import { SET_FILTERED_GAMES } from "../../store/types/game.type";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -53,17 +49,18 @@ export const AllGames = () => {
   const navigate = useNavigate();
   const { isShowing, toggle } = useModal();
   const [currentGame, setCurrentGame] = useState({});
-  const [gameData] = useFetchGames();
+  const [filteredWithCategory, setFilteredWithCategory] = useState([]);
   const theme = useTheme();
+  const [allGames] = useFetchGames();
   const [selectedCategory, setSelectedCategory] = React.useState<string[]>([]);
   const { filter } = state?.epicGame;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, []);
   useEffect(() => {
     filterWithCategory();
-  }, [selectedCategory]);
+  }, [selectedCategory, state.epicGame.filter.searchText, allGames]);
 
   const handleGameClick = useCallback(
     (e: React.MouseEvent<HTMLElement>, game: IGame) => {
@@ -82,21 +79,34 @@ export const AllGames = () => {
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
+
+    console.log('filteredGames :>> ', filter.filteredGames);
+    console.log('selectedCategory :>> ', selectedCategory);
+    if (value?.length < 1 && filter?.searchText == "") {
+      debugger
+      setFilteredWithCategory(allGames)
+    }
+    else { setFilteredWithCategory(filter.filteredGames) }
   };
 
   const filterWithCategory = () => {
-    let filteredGames = state?.epicGame?.filter?.filteredGames || [];
-    let filtered = (
-      (filteredGames.length > 0 ? filteredGames : gameData) || []
+    let { filteredGames } = filter || [];
+    let filteredWithCategory = (
+      (filteredGames?.length > 0 ? filteredGames : allGames) || []
     ).filter((item: IGame) =>
       selectedCategory.some((category: string) =>
         item.Categories.includes(category)
       )
     );
 
+    if (selectedCategory?.length < 1) {
+      filteredWithCategory = filteredGames || allGames;
+    }
+
+    setFilteredWithCategory(filteredWithCategory);
     dispatch({
       type: SET_FILTERED_GAMES,
-      payload: filtered,
+      payload: filteredWithCategory,
     });
   };
 
@@ -134,17 +144,16 @@ export const AllGames = () => {
 
       <h5 className="mt-5">{t("home.texts.all")}</h5>
       <div className="row">
-        {(filter?.searchText != "" && filter?.searchText != null) && filter?.filteredGames?.length < 1 ? (
+        {filter?.searchText != "" &&
+        filter?.searchText != null &&
+        filteredWithCategory?.length < 1 ? (
           <div className="row mt-5">
             <div className="col-md-12 text-center">
               {t("search.texts.noResult")}
             </div>
           </div>
         ) : (
-          (filter?.filteredGames > 0
-            ? state?.epicGame?.filter?.filteredGames
-            : gameData
-          )?.map((game: IGame, key: number) => (
+          (filteredWithCategory || [])?.map((game: IGame, key: number) => (
             <div className={`col-md-3 mt-5`} key={key}>
               <div className="card">
                 <a
