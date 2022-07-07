@@ -18,6 +18,7 @@ import useFetchGames from "../../shared/hooks/useFetchGames";
 import useModal from "../../shared/hooks/useModal";
 import { Context } from "../../store";
 import { SET_FILTERED_GAMES } from "../../store/types/game.type";
+import { textSearchFilterGames } from "../../components/search/SearchInput";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -49,7 +50,7 @@ export const AllGames = () => {
   const navigate = useNavigate();
   const { isShowing, toggle } = useModal();
   const [currentGame, setCurrentGame] = useState({});
-  const [filteredWithCategory, setFilteredWithCategory] = useState([]);
+  const [filteredWithCategory, setFilteredWithCategory] = useState<any>([]);
   const theme = useTheme();
   const [allGames] = useFetchGames();
   const [selectedCategory, setSelectedCategory] = React.useState<string[]>([]);
@@ -71,7 +72,9 @@ export const AllGames = () => {
     [isShowing]
   );
 
-  const handleChange = (event: SelectChangeEvent<typeof selectedCategory>) => {
+  const handleCategoryChange = (
+    event: SelectChangeEvent<typeof selectedCategory>
+  ) => {
     const {
       target: { value },
     } = event;
@@ -79,20 +82,13 @@ export const AllGames = () => {
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
-
-    console.log('filteredGames :>> ', filter.filteredGames);
-    console.log('selectedCategory :>> ', selectedCategory);
-    if (value?.length < 1 && filter?.searchText == "") {
-      debugger
-      setFilteredWithCategory(allGames)
-    }
-    else { setFilteredWithCategory(filter.filteredGames) }
   };
 
   const filterWithCategory = () => {
-    let { filteredGames } = filter || [];
+    let filtered = textSearchFilterGames(allGames, state.epicGame.filter.searchText)
+    
     let filteredWithCategory = (
-      (filteredGames?.length > 0 ? filteredGames : allGames) || []
+      (filtered?.length > 0 ? filtered : allGames) || []
     ).filter((item: IGame) =>
       selectedCategory.some((category: string) =>
         item.Categories.includes(category)
@@ -100,10 +96,12 @@ export const AllGames = () => {
     );
 
     if (selectedCategory?.length < 1) {
-      filteredWithCategory = filteredGames || allGames;
+      filteredWithCategory =
+      filtered?.length > 0 ? filtered : allGames;
     }
 
     setFilteredWithCategory(filteredWithCategory);
+    
     dispatch({
       type: SET_FILTERED_GAMES,
       payload: filteredWithCategory,
@@ -119,7 +117,7 @@ export const AllGames = () => {
           id="demo-multiple-chip"
           multiple
           value={selectedCategory}
-          onChange={handleChange}
+          onChange={handleCategoryChange}
           input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           renderValue={(selected) => (
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>

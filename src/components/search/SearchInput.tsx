@@ -14,6 +14,20 @@ import {
   SET_SEARCH_TEXT,
 } from "../../store/types/game.type";
 import { useNavigate } from "react-router-dom";
+
+export const textSearchFilterGames = (data: IGame[], searchText: string): IGame[] => {
+  let filtered = (data || []).filter((item: IGame) => {
+    const arr = searchText.split(" ");
+    return arr.some(
+      (el) =>
+        item.Name.toLowerCase().includes(el) ||
+        item.Summary.toLowerCase().includes(el)
+    );
+  });
+
+  return filtered
+}
+
 export const SearchInput = () => {
   //@ts-ignore
   const [state, dispatch] = useContext(Context);
@@ -31,15 +45,8 @@ export const SearchInput = () => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     let searchValue = e.currentTarget.value.toLowerCase();
 
-    let filtered = state.epicGame.games.filter((item: IGame) => {
-      const arr = searchValue.split(" ");
-      return arr.some(
-        (el) =>
-          item.Name.toLowerCase().includes(el) ||
-          item.Summary.toLowerCase().includes(el)
-      );
-    });
 
+    let filtered = textSearchFilterGames(state.epicGame.games, searchValue);
     setFilteredGames(filtered);
     setIsShowing(true);
 
