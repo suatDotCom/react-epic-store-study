@@ -47,7 +47,7 @@ export const DiscountGamesSection = () => {
         </div>
       </div>
       <div className="row">
-        {discountedGames.map((game: IGame, key: number) => (
+        {(discountedGames || []).map((game: IGame, key: number) => (
           <div className={`col-md-3 mt-5`} key={key}>
             <div className="card">
               <a
