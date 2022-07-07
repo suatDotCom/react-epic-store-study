@@ -40,12 +40,16 @@ const gameReducer = (state: IEpicGameStore, action: IAction) => {
   switch (action.type) {
     case SET_GAMES:
       var games: IGame[] = getGames();
+      var payload = games;
 
-      if (!games) setGames(games);
+      if (!games || games?.length < 1) {
+        payload = action.payload;
+      }
 
+      setGames(payload);
       return {
         ...state,
-        games: games || action.payload,
+        games: payload,
       };
     case GET_FAVORITE_GAMES:
       var favoriteGames: number[] = getFavoriteGames();
@@ -85,7 +89,6 @@ const gameReducer = (state: IEpicGameStore, action: IAction) => {
         return game;
       });
 
-
       setFavoriteGames(favoriteGames);
       setGames(mappedGames);
       syncRegisteredUser();
@@ -110,17 +113,9 @@ const gameReducer = (state: IEpicGameStore, action: IAction) => {
         },
       };
     case SET_UNIQUE_CATEGORIES:
-      let uniqueCategories: string[] = [];
-      let categories = state.games.map((item: IGame) => {
-        uniqueCategories.push(...item.Categories);
-      });
-
-      //@ts-ignore
-      uniqueCategories = [...new Set(uniqueCategories)];
-
       return {
         ...state,
-        categories: uniqueCategories,
+        categories: action.payload,
       };
     default:
       return state;
