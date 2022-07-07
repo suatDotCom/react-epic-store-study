@@ -13,7 +13,7 @@ export const MainCarouselSection = () => {
   //@ts-ignore
   const [state] = useContext(Context);
 
-  let discountedGames = state?.epicGame?.games?.slice(9, state?.epicGame?.games?.length);
+  let games = state?.epicGame?.games?.slice(9, state?.epicGame?.games?.length);
 
   return (
     <div className="main-carousel-container">
@@ -25,7 +25,7 @@ export const MainCarouselSection = () => {
         modules={[Pagination, Navigation]}
         className="main-carousel-swiper"
       >
-        {discountedGames.map((game: IGame, key: number) => (
+        {(games || []).map((game: IGame, key: number) => (
           <SwiperSlide key={key}>
             <img src={game.Cover} alt=""/>
           </SwiperSlide>
